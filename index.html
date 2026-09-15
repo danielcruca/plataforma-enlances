@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desarrollo con Plataformas Abiertas</title>
+    <!-- Google Fonts & FontAwesome para iconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --card-hover: #21262d;
+            --border-color: #30363d;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --accent-color: #58a6ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Cabecera */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+            display: inline-flex;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Contenedor de enlaces */
+        .links-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .link-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .link-card:hover {
+            background-color: var(--card-hover);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.15);
+        }
+
+        .link-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .link-content i {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            width: 24px;
+            text-align: center;
+        }
+
+        .text-info h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .text-info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .link-card > i.fa-chevron-right {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            transition: transform 0.2s;
+        }
+
+        .link-card:hover > i.fa-chevron-right {
+            transform: translateX(3px);
+            color: var(--accent-color);
+        }
+
+        /* Sección Oculta de Tareas */
+        .tasks-container {
+            width: 100%;
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 5px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-btn {
+            background-color: transparent;
+            border: 1px dashed var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            margin-bottom: 5px;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            border-color: var(--text-main);
+            color: var(--text-main);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 3rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Cabecera -->
+        <div class="header">
+            <div class="logo-icon">
+                <i class="fa-solid fa-code"></i>
+            </div>
+            <h1>DESARROLLO CON PLATAFORMAS ABIERTAS</h1>
+            <p class="subtitle">Enlaces importantes del curso</p>
+        </div>
+
+        <!-- Vista Principal de Enlaces -->
+        <div id="main-menu" class="links-list">
+            <a href="https://github.com/tu-usuario/tu-repo" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-brands fa-github"></i>
+                    <div class="text-info">
+                        <h3>REPOSITORIO PRINCIPAL DEL CURSO</h3>
+                        <span>Materia y ejemplos</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <a href="#" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <div class="text-info">
+                        <h3>PROYECTO DE EJEMPLO</h3>
+                        <span>pendiente...</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <a href="#" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <div class="text-info">
+                        <h3>FECHAS</h3>
+                        <span>Fechas a considerar durante el cuatri.</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <!-- Botón interactivo que despliega las tareas -->
+            <div class="link-card" onclick="toggleTasks()">
+                <div class="link-content">
+                    <i class="fa-solid fa-list-check"></i>
+                    <div class="text-info">
+                        <h3>TAREAS DEL CURSO</h3>
+                        <span>Acceso a documentos de Google Drive</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right" id="tasks-arrow"></i>
+            </div>
+
+            <a href="#" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-brain"></i>
+                    <div class="text-info">
+                        <h3>NOTEBOOK DEL CURSO</h3>
+                        <span>IA asociada a los materiales del curso</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <a href="#" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <div class="text-info">
+                        <h3>PROGRAMA DEL CURSO</h3>
+                        <span>Plan de estudios oficial</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <a href="#" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-file-signature"></i>
+                    <div class="text-info">
+                        <h3>FIRMAR ACTA ACEPTACIÓN DEL CURSO</h3>
+                        <span>n.º de acta: 01046</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <a href="#" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-brands fa-microsoft"></i>
+                    <div class="text-info">
+                        <h3>CANAL DE TEAMS</h3>
+                        <span>Clases y reuniones</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <a href="mailto:tu-correo@universidad.ac.cr" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <div class="text-info">
+                        <h3>CONTACTO DEL PROFESOR</h3>
+                        <span>Comunicación directa</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+        </div>
+
+        <!-- Submenú de Tareas (Oculto inicialmente) -->
+        <div id="tasks-menu" class="tasks-container">
+            <button class="back-btn" onclick="toggleTasks()"><i class="fa-solid fa-arrow-left"></i> Volver al menú principal</button>
+            
+            <a href="ENLACE_GOOGLE_DRIVE_TAREA_1" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-file-lines"></i>
+                    <div class="text-info">
+                        <h3>TAREA 1</h3>
+                        <span>Ver documento en Google Drive</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-external-link"></i>
+            </a>
+
+            <a href="ENLACE_GOOGLE_DRIVE_TAREA_2" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-file-lines"></i>
+                    <div class="text-info">
+                        <h3>TAREA 2</h3>
+                        <span>Ver documento en Google Drive</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-external-link"></i>
+            </a>
+
+            <a href="ENLACE_GOOGLE_DRIVE_TAREA_3" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-file-lines"></i>
+                    <div class="text-info">
+                        <h3>TAREA 3</h3>
+                        <span>Ver documento en Google Drive</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-external-link"></i>
+            </a>
+
+            <a href="ENLACE_GOOGLE_DRIVE_TAREA_4" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-file-lines"></i>
+                    <div class="text-info">
+                        <h3>TAREA 4</h3>
+                        <span>Ver documento en Google Drive</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-external-link"></i>
+            </a>
+
+            <a href="ENLACE_GOOGLE_DRIVE_TAREA_5" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-file-lines"></i>
+                    <div class="text-info">
+                        <h3>TAREA 5</h3>
+                        <span>Ver documento en Google Drive</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-external-link"></i>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            Desarrollo con Plataformas Abiertas • Hospedado en GitHub Pages
+        </div>
+    </div>
+
+    <script>
+        function toggleTasks() {
+            const mainMenu = document.getElementById('main-menu');
+            const tasksMenu = document.getElementById('tasks-menu');
+            
+            if (tasksMenu.style.display === 'flex') {
+                tasksMenu.style.display = 'none';
+                mainMenu.style.display = 'flex';
+            } else {
+                mainMenu.style.display = 'none';
+                tasksMenu.style.display = 'flex';
+            }
+        }
+    </script>
+</body>
+</html>
