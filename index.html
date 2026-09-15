@@ -11,8 +11,8 @@
     <style>
         :root {
             --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --card-hover: #21262d;
+            --card-bg: rgba(22, 27, 34, 0.85); /* Ligeramente translúcido para que respire el fondo */
+            --card-hover: rgba(33, 38, 45, 0.95);
             --border-color: #30363d;
             --text-main: #f0f6fc;
             --text-muted: #8b949e;
@@ -27,7 +27,10 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            /* Fondo con imagen de código, capa oscura translúcida y efecto fijo */
+            background: linear-gradient(rgba(13, 17, 23, 0.85), rgba(13, 17, 23, 0.92)), 
+                        url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
             color: var(--text-main);
             display: flex;
             justify-content: center;
@@ -58,7 +61,8 @@
             border: 1px solid var(--border-color);
             margin-bottom: 1rem;
             display: inline-flex;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
         }
 
         h1 {
@@ -66,6 +70,7 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         p.subtitle {
@@ -83,6 +88,8 @@
 
         .link-card {
             background-color: var(--card-bg);
+            backdrop-filter: blur(8px); /* Efecto cristal esmerilado suave */
+            -webkit-backdrop-filter: blur(8px);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 16px 20px;
@@ -92,7 +99,7 @@
             align-items: center;
             justify-content: space-between;
             transition: all 0.2s ease-in-out;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             cursor: pointer;
         }
 
@@ -100,7 +107,7 @@
             background-color: var(--card-hover);
             border-color: var(--accent-color);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.15);
+            box-shadow: 0 6px 16px rgba(88, 166, 255, 0.2);
         }
 
         .link-content {
@@ -127,13 +134,15 @@
             color: var(--text-muted);
         }
 
-        .link-card > i.fa-chevron-right {
+        .link-card > i.fa-chevron-right,
+        .link-card > i.fa-external-link {
             font-size: 0.8rem;
             color: var(--text-muted);
             transition: transform 0.2s;
         }
 
-        .link-card:hover > i.fa-chevron-right {
+        .link-card:hover > i.fa-chevron-right,
+        .link-card:hover > i.fa-external-link {
             transform: translateX(3px);
             color: var(--accent-color);
         }
@@ -154,11 +163,12 @@
         }
 
         .back-btn {
-            background-color: transparent;
+            background-color: var(--card-bg);
+            backdrop-filter: blur(8px);
             border: 1px dashed var(--border-color);
             color: var(--text-muted);
             font-size: 0.85rem;
-            padding: 10px;
+            padding: 12px;
             border-radius: 8px;
             cursor: pointer;
             text-align: center;
@@ -169,6 +179,7 @@
         .back-btn:hover {
             border-color: var(--text-main);
             color: var(--text-main);
+            background-color: var(--card-hover);
         }
 
         /* Footer */
@@ -177,6 +188,7 @@
             font-size: 0.75rem;
             color: var(--text-muted);
             text-align: center;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
     </style>
 </head>
@@ -194,7 +206,7 @@
 
         <!-- Vista Principal de Enlaces -->
         <div id="main-menu" class="links-list">
-            <a href="https://github.com/tu-usuario/tu-repo" target="_blank" class="link-card">
+            <a href="https://github.com/danielcruca/plataformas-abiertas-2026-3c" target="_blank" class="link-card">
                 <div class="link-content">
                     <i class="fa-brands fa-github"></i>
                     <div class="text-info">
@@ -205,7 +217,7 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </a>
 
-            <a href="#" target="_blank" class="link-card">
+            <a href="https://cat-bounce.com/" target="_blank" class="link-card">
                 <div class="link-content">
                     <i class="fa-solid fa-folder-open"></i>
                     <div class="text-info">
@@ -216,7 +228,7 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </a>
 
-            <a href="#" target="_blank" class="link-card">
+            <a href="https://docs.google.com/spreadsheets/d/1f4xoKS-28PQlVfE6lZpRMFPjnQY87cre/edit?usp=sharing&ouid=108692862978134487986&rtpof=true&sd=true" target="_blank" class="link-card">
                 <div class="link-content">
                     <i class="fa-solid fa-calendar-days"></i>
                     <div class="text-info">
@@ -239,7 +251,7 @@
                 <i class="fa-solid fa-chevron-right" id="tasks-arrow"></i>
             </div>
 
-            <a href="#" target="_blank" class="link-card">
+            <a href="https://notebook.google.com/notebook/edd8cc9c-dba5-4326-8137-296d1ca919ac" target="_blank" class="link-card">
                 <div class="link-content">
                     <i class="fa-solid fa-brain"></i>
                     <div class="text-info">
@@ -250,7 +262,7 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </a>
 
-            <a href="#" target="_blank" class="link-card">
+            <a href="https://docs.google.com/document/d/1RnyuTNe8HShslWnwzOFsso1aj9X24gGO/edit?usp=sharing&ouid=108692862978134487986&rtpof=true&sd=true" target="_blank" class="link-card">
                 <div class="link-content">
                     <i class="fa-solid fa-laptop-code"></i>
                     <div class="text-info">
@@ -261,7 +273,7 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </a>
 
-            <a href="#" target="_blank" class="link-card">
+            <a href="https://servicios.uca.ac.cr/Rectoria/DireccionCarrera/responderactaaceptacion" target="_blank" class="link-card">
                 <div class="link-content">
                     <i class="fa-solid fa-file-signature"></i>
                     <div class="text-info">
@@ -272,7 +284,7 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </a>
 
-            <a href="#" target="_blank" class="link-card">
+            <a href="https://teams.microsoft.com/l/team/19%3AiJrPFo367kxnoKQnsfj3gcSRhhHLBpEox-DPL5_iC6Y1%40thread.tacv2/conversations?groupId=a022b343-e9ad-4328-8bf1-a92f897d799f&tenantId=53c2e497-4777-481b-8736-a1a176df5c02" target="_blank" class="link-card">
                 <div class="link-content">
                     <i class="fa-brands fa-microsoft"></i>
                     <div class="text-info">
@@ -283,7 +295,7 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </a>
 
-            <a href="mailto:tu-correo@universidad.ac.cr" class="link-card">
+            <a href="https://teams.microsoft.com/l/chat/48:notes/conversations?context=%7B%22contextType%22%3A%22chat%22%7D" class="link-card">
                 <div class="link-content">
                     <i class="fa-solid fa-user-tie"></i>
                     <div class="text-info">
@@ -299,7 +311,7 @@
         <div id="tasks-menu" class="tasks-container">
             <button class="back-btn" onclick="toggleTasks()"><i class="fa-solid fa-arrow-left"></i> Volver al menú principal</button>
             
-            <a href="ENLACE_GOOGLE_DRIVE_TAREA_1" target="_blank" class="link-card">
+            <a href="https://docs.google.com/document/d/1-w6NtiWROQzw7IrcRaNzlw7OBm1tikv4/edit?usp=sharing&ouid=108692862978134487986&rtpof=true&sd=true" target="_blank" class="link-card">
                 <div class="link-content">
                     <i class="fa-solid fa-file-lines"></i>
                     <div class="text-info">
@@ -310,49 +322,9 @@
                 <i class="fa-solid fa-external-link"></i>
             </a>
 
-            <a href="ENLACE_GOOGLE_DRIVE_TAREA_2" target="_blank" class="link-card">
-                <div class="link-content">
-                    <i class="fa-solid fa-file-lines"></i>
-                    <div class="text-info">
-                        <h3>TAREA 2</h3>
-                        <span>Ver documento en Google Drive</span>
-                    </div>
-                </div>
-                <i class="fa-solid fa-external-link"></i>
-            </a>
+      
 
-            <a href="ENLACE_GOOGLE_DRIVE_TAREA_3" target="_blank" class="link-card">
-                <div class="link-content">
-                    <i class="fa-solid fa-file-lines"></i>
-                    <div class="text-info">
-                        <h3>TAREA 3</h3>
-                        <span>Ver documento en Google Drive</span>
-                    </div>
-                </div>
-                <i class="fa-solid fa-external-link"></i>
-            </a>
-
-            <a href="ENLACE_GOOGLE_DRIVE_TAREA_4" target="_blank" class="link-card">
-                <div class="link-content">
-                    <i class="fa-solid fa-file-lines"></i>
-                    <div class="text-info">
-                        <h3>TAREA 4</h3>
-                        <span>Ver documento en Google Drive</span>
-                    </div>
-                </div>
-                <i class="fa-solid fa-external-link"></i>
-            </a>
-
-            <a href="ENLACE_GOOGLE_DRIVE_TAREA_5" target="_blank" class="link-card">
-                <div class="link-content">
-                    <i class="fa-solid fa-file-lines"></i>
-                    <div class="text-info">
-                        <h3>TAREA 5</h3>
-                        <span>Ver documento en Google Drive</span>
-                    </div>
-                </div>
-                <i class="fa-solid fa-external-link"></i>
-            </a>
+           
         </div>
 
         <!-- Footer -->
