@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desarrollo con Plataformas Abiertas</title>
-    <!-- Google Fonts & FontAwesome para iconos -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fuentes Google: Pixelify Sans (Retro Suave) e Inter (Lectura limpia) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pixelify+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome para íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-color: #0d1117;
-            --card-bg: rgba(22, 27, 34, 0.85); /* Ligeramente translúcido para que respire el fondo */
-            --card-hover: rgba(33, 38, 45, 0.95);
-            --border-color: #30363d;
-            --text-main: #f0f6fc;
-            --text-muted: #8b949e;
-            --accent-color: #58a6ff;
+            /* Paleta Synthwave / Retro Soft en Azules */
+            --bg-top: #0a1329;
+            --bg-bottom: #040814;
+            --card-bg: rgba(15, 32, 67, 0.65);
+            --card-hover: rgba(23, 49, 102, 0.8);
+            --accent-blue: #38bdf8;       /* Azul brillante */
+            --accent-cyan: #2dd4bf;       /* Cian suave */
+            --accent-electric: #60a5fa;   /* Azul eléctrico pastel */
+            --text-main: #f0f9ff;
+            --text-muted: #7dd3fc;
+            --border-glow: rgba(56, 189, 248, 0.3);
         }
 
         * {
@@ -27,15 +32,18 @@
         }
 
         body {
-            /* Fondo con imagen de código, capa oscura translúcida y efecto fijo */
-            background: linear-gradient(rgba(13, 17, 23, 0.85), rgba(13, 17, 23, 0.92)), 
-                        url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
-            background-size: cover;
+            /* Fondo con degradado azul profundo y rejilla retro sutil */
+            background: 
+                linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+                linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+            background-size: 40px 40px, 40px 40px, 100% 100%;
+            background-attachment: fixed;
             color: var(--text-main);
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            padding: 2rem 1rem;
+            padding: 2.5rem 1rem;
         }
 
         .container {
@@ -43,309 +51,443 @@
             max-width: 600px;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            gap: 1.8rem;
         }
 
-        /* Cabecera */
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .logo-icon {
-            font-size: 3rem;
-            color: var(--accent-color);
+        /* Cabecera Estilo Ventana Synth Soft */
+        .window-card {
             background: var(--card-bg);
-            padding: 20px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                        0 0 25px rgba(56, 189, 248, 0.15);
+            overflow: hidden;
+        }
+
+        .window-bar {
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            border: 1px solid var(--border-color);
-            margin-bottom: 1rem;
+        }
+
+        .dot-1 { background: #ff5f56; box-shadow: 0 0 8px rgba(255, 95, 86, 0.6); }
+        .dot-2 { background: #ffbd2e; box-shadow: 0 0 8px rgba(255, 189, 46, 0.6); }
+        .dot-3 { background: #27c93f; box-shadow: 0 0 8px rgba(39, 201, 63, 0.6); }
+
+        .window-title {
+            font-family: 'Pixelify Sans', cursive;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+        }
+
+        .header-body {
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .icon-glow {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            border-radius: 18px;
             display: inline-flex;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #040814;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
         }
 
         h1 {
-            font-size: 1.5rem;
+            font-family: 'Pixelify Sans', cursive;
+            font-size: 1.35rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #ffffff, var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.4rem;
         }
 
         p.subtitle {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
-        /* Contenedor de enlaces */
-        .links-list {
-            width: 100%;
+        /* Categorías */
+        .category-group {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 0.8rem;
         }
 
+        .category-title {
+            font-family: 'Pixelify Sans', cursive;
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-left: 4px;
+        }
+
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Cards de Enlace */
         .link-card {
-            background-color: var(--card-bg);
-            backdrop-filter: blur(8px); /* Efecto cristal esmerilado suave */
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px 20px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-glow);
+            border-radius: 14px;
+            padding: 14px 18px;
             color: var(--text-main);
             text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: all 0.2s ease-in-out;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .link-card:hover {
-            background-color: var(--card-hover);
-            border-color: var(--accent-color);
+            background: var(--card-hover);
+            border-color: var(--accent-blue);
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(88, 166, 255, 0.2);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.25);
         }
 
-        .link-content {
+        .link-left {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
         }
 
-        .link-content i {
-            font-size: 1.3rem;
-            color: var(--accent-color);
+        .link-left i {
+            font-size: 1.25rem;
+            color: var(--accent-electric);
             width: 24px;
             text-align: center;
+            transition: color 0.2s;
+        }
+
+        .link-card:hover .link-left i {
+            color: var(--accent-blue);
         }
 
         .text-info h3 {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 2px;
         }
 
         .text-info span {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--text-muted);
         }
 
-        .link-card > i.fa-chevron-right,
-        .link-card > i.fa-external-link {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            transition: transform 0.2s;
-        }
-
-        .link-card:hover > i.fa-chevron-right,
-        .link-card:hover > i.fa-external-link {
-            transform: translateX(3px);
-            color: var(--accent-color);
-        }
-
-        /* Sección Oculta de Tareas */
-        .tasks-container {
-            width: 100%;
-            display: none;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 5px;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .back-btn {
-            background-color: var(--card-bg);
-            backdrop-filter: blur(8px);
-            border: 1px dashed var(--border-color);
-            color: var(--text-muted);
+        .arrow-icon {
             font-size: 0.85rem;
-            padding: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: center;
-            margin-bottom: 5px;
-            transition: all 0.2s;
+            color: var(--text-muted);
+            transition: transform 0.2s, color 0.2s;
         }
 
-        .back-btn:hover {
-            border-color: var(--text-main);
-            color: var(--text-main);
-            background-color: var(--card-hover);
+        .link-card:hover .arrow-icon {
+            transform: translateX(4px);
+            color: var(--accent-blue);
+        }
+
+        /* Acordeón Desplegable (Details) */
+        details.accordion {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-glow);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: border-color 0.25s;
+        }
+
+        details.accordion[open] {
+            border-color: var(--accent-blue);
+        }
+
+        summary.accordion-header {
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            list-style: none;
+            user-select: none;
+        }
+
+        summary.accordion-header::-webkit-details-marker {
+            display: none;
+        }
+
+        summary.accordion-header:hover {
+            background: var(--card-hover);
+        }
+
+        details[open] summary .arrow-icon {
+            transform: rotate(180deg);
+            color: var(--accent-blue);
+        }
+
+        .accordion-content {
+            padding: 10px 12px 12px 12px;
+            background: rgba(4, 8, 20, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .sub-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 10px 14px;
+        }
+
+        .badge {
+            font-family: 'Pixelify Sans', cursive;
+            font-size: 0.65rem;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 6px;
         }
 
         /* Footer */
         .footer {
-            margin-top: 3rem;
-            font-size: 0.75rem;
-            color: var(--text-muted);
             text-align: center;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Cabecera -->
-        <div class="header">
-            <div class="logo-icon">
-                <i class="fa-solid fa-code"></i>
+
+        <!-- CABECERA PRINCIPAL -->
+        <div class="window-card">
+            <div class="window-bar">
+                <div class="dots">
+                    <div class="dot dot-1"></div>
+                    <div class="dot dot-2"></div>
+                    <div class="dot dot-3"></div>
+                </div>
+                <div class="window-title">⚡ UCA_OS // PLATAFORMAS.EXE</div>
+                <div style="width: 30px;"></div>
             </div>
-            <h1>DESARROLLO CON PLATAFORMAS ABIERTAS</h1>
-            <p class="subtitle">Enlaces importantes del curso</p>
-        </div>
-
-        <!-- Vista Principal de Enlaces -->
-        <div id="main-menu" class="links-list">
-            <a href="https://github.com/danielcruca/plataformas-abiertas-2026-3c" target="_blank" class="link-card">
-                <div class="link-content">
-                    <i class="fa-brands fa-github"></i>
-                    <div class="text-info">
-                        <h3>REPOSITORIO PRINCIPAL DEL CURSO</h3>
-                        <span>Materia y ejemplos</span>
-                    </div>
+            <div class="header-body">
+                <div class="icon-glow">
+                    <i class="fa-solid fa-terminal"></i>
                 </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <a href="https://cat-bounce.com/" target="_blank" class="link-card">
-                <div class="link-content">
-                    <i class="fa-solid fa-folder-open"></i>
-                    <div class="text-info">
-                        <h3>PROYECTO DE EJEMPLO</h3>
-                        <span>pendiente...</span>
-                    </div>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <a href="https://docs.google.com/spreadsheets/d/1f4xoKS-28PQlVfE6lZpRMFPjnQY87cre/edit?usp=sharing&ouid=108692862978134487986&rtpof=true&sd=true" target="_blank" class="link-card">
-                <div class="link-content">
-                    <i class="fa-solid fa-calendar-days"></i>
-                    <div class="text-info">
-                        <h3>FECHAS</h3>
-                        <span>Fechas a considerar durante el cuatri.</span>
-                    </div>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <!-- Botón interactivo que despliega las tareas -->
-            <div class="link-card" onclick="toggleTasks()">
-                <div class="link-content">
-                    <i class="fa-solid fa-list-check"></i>
-                    <div class="text-info">
-                        <h3>TAREAS DEL CURSO</h3>
-                        <span>Acceso a documentos de Google Drive</span>
-                    </div>
-                </div>
-                <i class="fa-solid fa-chevron-right" id="tasks-arrow"></i>
+                <h1>DESARROLLO CON PLATAFORMAS ABIERTAS</h1>
+                <p class="subtitle">Panel general de enlaces y recursos</p>
             </div>
-
-            <a href="https://notebook.google.com/notebook/edd8cc9c-dba5-4326-8137-296d1ca919ac" target="_blank" class="link-card">
-                <div class="link-content">
-                    <i class="fa-solid fa-brain"></i>
-                    <div class="text-info">
-                        <h3>NOTEBOOK DEL CURSO</h3>
-                        <span>IA asociada a los materiales del curso</span>
-                    </div>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <a href="https://docs.google.com/document/d/1RnyuTNe8HShslWnwzOFsso1aj9X24gGO/edit?usp=sharing&ouid=108692862978134487986&rtpof=true&sd=true" target="_blank" class="link-card">
-                <div class="link-content">
-                    <i class="fa-solid fa-laptop-code"></i>
-                    <div class="text-info">
-                        <h3>PROGRAMA DEL CURSO</h3>
-                        <span>Plan de estudios oficial</span>
-                    </div>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <a href="https://servicios.uca.ac.cr/Rectoria/DireccionCarrera/responderactaaceptacion" target="_blank" class="link-card">
-                <div class="link-content">
-                    <i class="fa-solid fa-file-signature"></i>
-                    <div class="text-info">
-                        <h3>FIRMAR ACTA ACEPTACIÓN DEL CURSO</h3>
-                        <span>n.º de acta: 01046</span>
-                    </div>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <a href="https://teams.microsoft.com/l/team/19%3AiJrPFo367kxnoKQnsfj3gcSRhhHLBpEox-DPL5_iC6Y1%40thread.tacv2/conversations?groupId=a022b343-e9ad-4328-8bf1-a92f897d799f&tenantId=53c2e497-4777-481b-8736-a1a176df5c02" target="_blank" class="link-card">
-                <div class="link-content">
-                    <i class="fa-brands fa-microsoft"></i>
-                    <div class="text-info">
-                        <h3>CANAL DE TEAMS</h3>
-                        <span>Clases y reuniones</span>
-                    </div>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <a href="https://teams.microsoft.com/l/chat/48:notes/conversations?context=%7B%22contextType%22%3A%22chat%22%7D" class="link-card">
-                <div class="link-content">
-                    <i class="fa-solid fa-user-tie"></i>
-                    <div class="text-info">
-                        <h3>CONTACTO DEL PROFESOR</h3>
-                        <span>Comunicación directa</span>
-                    </div>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
         </div>
 
-        <!-- Submenú de Tareas (Oculto inicialmente) -->
-        <div id="tasks-menu" class="tasks-container">
-            <button class="back-btn" onclick="toggleTasks()"><i class="fa-solid fa-arrow-left"></i> Volver al menú principal</button>
-            
-            <a href="https://docs.google.com/document/d/1-w6NtiWROQzw7IrcRaNzlw7OBm1tikv4/edit?usp=sharing&ouid=108692862978134487986&rtpof=true&sd=true" target="_blank" class="link-card">
-                <div class="link-content">
-                    <i class="fa-solid fa-file-lines"></i>
-                    <div class="text-info">
-                        <h3>TAREA 1</h3>
-                        <span>Ver documento en Google Drive</span>
+        <!-- RECURSOS DEL CURSO -->
+        <div class="category-group">
+            <div class="category-title">
+                <i class="fa-solid fa-code"></i> RECURSOS PRINCIPALES
+            </div>
+            <div class="links-list">
+                <a href="https://github.com/danielcruca/plataformas-abiertas-2026-3c" target="_blank" class="link-card">
+                    <div class="link-left">
+                        <i class="fa-brands fa-github"></i>
+                        <div class="text-info">
+                            <h3>Repositorio Principal</h3>
+                            <span>Materia y ejemplos prácticos</span>
+                        </div>
                     </div>
-                </div>
-                <i class="fa-solid fa-external-link"></i>
-            </a>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+                </a>
 
-      
+                <a href="https://github.com/danielcruca/libreria-abc-2026-3-c" target="_blank" class="link-card">
+                    <div class="link-left">
+                        <i class="fa-solid fa-code-branch"></i>
+                        <div class="text-info">
+                            <h3>Proyecto de Referencia</h3>
+                            <span>Código base de apoyo</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+                </a>
 
-           
+                <a href="https://notebook.google.com/notebook/edd8cc9c-dba5-4326-8137-296d1ca919ac" target="_blank" class="link-card">
+                    <div class="link-left">
+                        <i class="fa-solid fa-microchip"></i>
+                        <div class="text-info">
+                            <h3>Notebook con IA</h3>
+                            <span>Asistente para estudiar los materiales</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+                </a>
+            </div>
         </div>
 
-        <!-- Footer -->
+        <!-- EVALUACIONES Y ENTREGABLES -->
+        <div class="category-group">
+            <div class="category-title">
+                <i class="fa-solid fa-folder-closed"></i> EVALUACIONES Y ENTREGABLES
+            </div>
+            <div class="links-list">
+                <!-- Acordeón Tareas -->
+                <details class="accordion">
+                    <summary class="accordion-header">
+                        <div class="link-left">
+                            <i class="fa-solid fa-list-check"></i>
+                            <div class="text-info">
+                                <h3>Tareas del Curso</h3>
+                                <span>Ver listado de tareas</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                    </summary>
+                    <div class="accordion-content">
+                        <a href="https://docs.google.com/document/d/1-w6NtiWROQzw7IrcRaNzlw7OBm1tikv4/edit?usp=sharing&ouid=108692862978134487986&rtpof=true&sd=true" target="_blank" class="link-card sub-card">
+                            <div class="link-left">
+                                <i class="fa-solid fa-file-lines"></i>
+                                <div class="text-info">
+                                    <h3>Tarea 1</h3>
+                                    <span>Documento de instrucciones</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Acordeón Proyectos -->
+                <details class="accordion">
+                    <summary class="accordion-header">
+                        <div class="link-left">
+                            <i class="fa-solid fa-cubes"></i>
+                            <div class="text-info">
+                                <h3>Proyectos del Curso <span class="badge">Nuevo</span></h3>
+                                <span>Ver proyectos asignados</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                    </summary>
+                    <div class="accordion-content">
+                        <a href="https://docs.google.com/document/d/17Ot9xZu8eIfraulk-CMLyEVZlORiubVq/edit?usp=sharing&ouid=108692862978134487986&rtpof=true&sd=true" target="_blank" class="link-card sub-card">
+                            <div class="link-left">
+                                <i class="fa-solid fa-diagram-project"></i>
+                                <div class="text-info">
+                                    <h3>Proyecto 1</h3>
+                                    <span>Guía del proyecto en Google Drive</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+                        </a>
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- GESTIÓN Y COMUNICACIÓN -->
+        <div class="category-group">
+            <div class="category-title">
+                <i class="fa-solid fa-globe"></i> GESTIÓN Y COMUNICACIÓN
+            </div>
+            <div class="links-list">
+                <a href="https://docs.google.com/spreadsheets/d/1f4xoKS-28PQlVfE6lZpRMFPjnQY87cre/edit?usp=sharing&ouid=108692862978134487986&rtpof=true&sd=true" target="_blank" class="link-card">
+                    <div class="link-left">
+                        <i class="fa-solid fa-calendar-week"></i>
+                        <div class="text-info">
+                            <h3>Calendario de Fechas</h3>
+                            <span>Cronograma del cuatrimestre</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+                </a>
+
+                <a href="https://docs.google.com/document/d/1RnyuTNe8HShslWnwzOFsso1aj9X24gGO/edit?usp=sharing&ouid=108692862978134487986&rtpof=true&sd=true" target="_blank" class="link-card">
+                    <div class="link-left">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                        <div class="text-info">
+                            <h3>Programa del Curso</h3>
+                            <span>Plan de estudios oficial</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+                </a>
+
+                <a href="https://servicios.uca.ac.cr/Rectoria/DireccionCarrera/responderactaaceptacion" target="_blank" class="link-card">
+                    <div class="link-left">
+                        <i class="fa-solid fa-file-signature"></i>
+                        <div class="text-info">
+                            <h3>Firmar Acta de Aceptación</h3>
+                            <span>Acta n.º 01046</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+                </a>
+
+                <a href="https://teams.microsoft.com/l/team/19%3AiJrPFo367kxnoKQnsfj3gcSRhhHLBpEox-DPL5_iC6Y1%40thread.tacv2/conversations?groupId=a022b343-e9ad-4328-8bf1-a92f897d799f&tenantId=53c2e497-4777-481b-8736-a1a176df5c02" target="_blank" class="link-card">
+                    <div class="link-left">
+                        <i class="fa-brands fa-microsoft"></i>
+                        <div class="text-info">
+                            <h3>Canal de Teams</h3>
+                            <span>Clases y reuniones</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+                </a>
+
+                <a href="https://teams.microsoft.com/l/chat/48:notes/conversations?context=%7B%22contextType%22%3A%22chat%22%7D" target="_blank" class="link-card">
+                    <div class="link-left">
+                        <i class="fa-solid fa-comment-dots"></i>
+                        <div class="text-info">
+                            <h3>Contacto del Profesor</h3>
+                            <span>Mensaje directo por Teams</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
         <div class="footer">
-            Desarrollo con Plataformas Abiertas • Hospedado en GitHub Pages
+            Desarrollo con Plataformas Abiertas • GitHub Pages
         </div>
+
     </div>
 
-    <script>
-        function toggleTasks() {
-            const mainMenu = document.getElementById('main-menu');
-            const tasksMenu = document.getElementById('tasks-menu');
-            
-            if (tasksMenu.style.display === 'flex') {
-                tasksMenu.style.display = 'none';
-                mainMenu.style.display = 'flex';
-            } else {
-                mainMenu.style.display = 'none';
-                tasksMenu.style.display = 'flex';
-            }
-        }
-    </script>
 </body>
 </html>
